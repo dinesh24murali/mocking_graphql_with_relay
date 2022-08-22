@@ -1,0 +1,13 @@
+type Query {
+  hello: String
+  me: User
+}
+
+type Mutation {
+  post(data: String!): User!
+}
+
+type User {
+  id: ID
+  name: String
+}
