@@ -11,5 +11,4 @@ The following are the additional packages that are needed
  - react-test-renderer
  - relay-runtime
  - react-relay
- - @reduxjs/toolkit
  - babel-plugin-relay
