@@ -5,15 +5,15 @@ import {
 } from 'relay-test-utils';
 import ReactTestRenderer from 'react-test-renderer';
 
-import { customRender } from 'testUtils/test-utils';
-import Incrementer from 'Increment/index';
+import { customRender } from './testUtils/test-utils';
+import Testing from './Testing';
 
 test('Mocking GraphQL queries', async () => {
 
   const environment = createMockEnvironment();
 
   customRender(
-    <Incrementer environment={environment} />
+    <Testing environment={environment} />
   );
 
   const operations = environment.mock.getAllOperations();
@@ -23,15 +23,21 @@ test('Mocking GraphQL queries', async () => {
         operation,
         MockPayloadGenerator.generate(operation, {
           String() {
-            return "Testing";
+            return "Sample";
           },
           ID() {
             return '12'
-          }
+          },
+        //   User() {
+        //     return {
+        //         id: '121',
+        //         name: 'Ember'
+        //     }
+        //   }
         })
       );
     });
   });
-  await waitFor(() => screen.getByText('Testing'), { timeout: 2000 })
+  await waitFor(() => screen.getByText('Sample'), { timeout: 2000 })
 
 });

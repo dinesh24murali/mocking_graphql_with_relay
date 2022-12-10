@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { HelloQuery } from 'relay/graphql/query/Hello';
-import { fetchQuery } from 'relay/index';
+import { HelloQuery } from './relay/graphql/query/Hello';
+import { fetchQuery } from './relay/index';
 
-export default function Incrementer({ environment }) {
+export default function Testing({ environment }) {
 
   const [text, setText] = useState('');
 
@@ -10,6 +10,7 @@ export default function Incrementer({ environment }) {
       fetchQuery(HelloQuery, {}, environment).subscribe({
         next: (data) => {
           setText(data.hello);
+          console.log(data.hello)
         },
         error: (error) => {
         }
@@ -20,16 +21,9 @@ export default function Incrementer({ environment }) {
     makeApiCall();
   }, []);
 
-  const makeCall = () => {
-    makeApiCall();
-  };
-
   return (
     <div className="text-center">
       <div>{text}</div>
-      <button data-testid="makeapicall" className="mt-3 mr-3 text-sm" onClick={makeCall}>
-        Make Api Call
-      </button>
     </div>
   );
 }
